@@ -17,6 +17,11 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func startHandler(w http.ResponseWriter, r *http.Request) {
+	numberForGuess := r.FormValue("numberForGuess")
+	userNumber := r.FormValue("userNumber")
+	fmt.Println(userNumber)
+	fmt.Println(numberForGuess)
+
 	tmpl, err := template.ParseFiles("templates/start.html", "templates/header.html", "templates/footer.html")
 	if err != nil {
 		fmt.Fprintf(w, err.Error())
@@ -24,6 +29,7 @@ func startHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	tmpl.ExecuteTemplate(w, "start", nil)
 
+	//r.FormValue("userNumber") = rand.Intn(10000)
 }
 
 func main() {

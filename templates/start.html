@@ -2,9 +2,15 @@
 
 {{ template "header" }}
 
-<div>
-    <h1>prompompom</h1>
-</div>        
+<div class="elements">
+    <form action="/start">
+        <label for="numberForGuess">Загаданное число:</label><br>
+        <input id="numberForGuess" name="numberForGuess" type="password" maxlength="4" value="1234" readonly><br>
+        <label for="userNumber">Ваш вариант:</label><br>
+        <input id="userNumber" name="userNumber" type="text" maxlength="4" pattern="[0-9]{4}"><br>
+        <button type="submit">Проверить</button>
+    </form>
+</div>
 
 {{ template "footer" }}
 

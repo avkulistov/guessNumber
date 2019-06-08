@@ -22,23 +22,43 @@ ul li a {
     display: block;
     margin-left: 10px;
     margin-top: 10px;
+    margin-bottom: 10px;
     font-weight: 700;
-    color: white;
+    color: black;
     text-decoration: none;
     padding: 10px 10px;
     border-radius: 3px;
-    background: rgb(64, 199, 129);
+    background: rgb(247, 255, 173);
 }
 
 ul li a:hover {
-    background: rgb(53, 167, 110);
+    background: rgb(243, 255, 133);
 }
 
 ul li a:active {
-    background: rgb(33, 147, 90);
+    background: rgb(241, 255, 111);
 }
 
 .elements {
     margin: auto;
     width: 70%;
+}
+
+input {
+    text-align: center;
+    font-size: 40px;
+    max-width: 100px;
+    margin-top:10px;
+    margin-bottom: 10px;
+}
+
+#topBar, #bottomBar {
+    background: rgb(247, 255, 173);
+    vertical-align: middle;
+    margin-bottom: 10px;
+}
+
+label {
+    margin-top: 10px;
+    font-size: 25px;
 }
