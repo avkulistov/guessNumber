@@ -8,35 +8,48 @@ import (
 	"strconv"
 )
 
-var randNumber = rand.Intn(10000)
+type viewData struct {
+	randNumber, userNumber, help string
+}
+
+var randNumber int
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("templates/index.html", "templates/header.html", "templates/footer.html")
 	if err != nil {
 		fmt.Fprintf(w, err.Error())
-		return
 	}
 	tmpl.ExecuteTemplate(w, "index", nil)
 
 }
 
 func startHandler(w http.ResponseWriter, r *http.Request) {
+	var data viewData
 	if r.Method == "POST" {
-		numberForGuess := r.FormValue("numberForGuess")
 		userNumber := r.FormValue("userNumber")
 		fmt.Println("user num = " + userNumber)
-		fmt.Println("computer num = " + numberForGuess)
-		fmt.Println("random num = " + strconv.Itoa(randNumber))
+		fmt.Println("computer num = " + moreZeros(strconv.Itoa(randNumber), 4))
+		data.randNumber = moreZeros(strconv.Itoa(randNumber), 4)
+		data.userNumber = userNumber
+		data.help = ""
 	} else {
 		randNumber = rand.Intn(10000)
+		data.randNumber = moreZeros(strconv.Itoa(randNumber), 4)
 	}
 
 	tmpl, err := template.ParseFiles("templates/start.html", "templates/header.html", "templates/footer.html")
 	if err != nil {
 		fmt.Fprintf(w, err.Error())
-		return
 	}
-	tmpl.ExecuteTemplate(w, "start", nil)
+
+	tmpl.ExecuteTemplate(w, "start", data)
+}
+
+func moreZeros(str string, length int) string {
+	for len(str) < length {
+		str = "0" + str
+	}
+	return str
 }
 
 func main() {

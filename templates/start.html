@@ -5,7 +5,7 @@
 <div class="elements" id="game">
     <form action="/start" method="POST">
         <label for="numberForGuess">Загаданное число:</label><br>
-        <input id="numberForGuess" name="numberForGuess" type="password" maxlength="4" value="1234" readonly><br>
+        <input id="numberForGuess" name="numberForGuess" type="password" maxlength="4" value="{{.randNumber}}" readonly><br>
         <label for="userNumber">Ваш вариант:</label><br>
         <input id="userNumber" name="userNumber" type="text" maxlength="4" pattern="[0-9]{4}"><br>
         <label for="help">Подсказка:</label><br>
