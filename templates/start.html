@@ -5,12 +5,12 @@
 <div class="elements" id="game">
     <form action="/start" method="POST">
         <label for="numberForGuess">Загаданное число:</label><br>
-        <input id="numberForGuess" name="numberForGuess" type="password" maxlength="4" value="{{.randNumber}}" readonly><br>
+        <input id="numberForGuess" name="numberForGuess" type="{{ .TypeRandNum}}" maxlength="4" value="{{ .RandNumber}}" readonly><br>
         <label for="userNumber">Ваш вариант:</label><br>
-        <input id="userNumber" name="userNumber" type="text" maxlength="4" pattern="[0-9]{4}"><br>
-        <label for="help">Подсказка:</label><br>
-        <input id="help" name="help" type="text" maxlength="4" readonly><br>
-        <button type="submit">Проверить</button>
+        <input id="userNumber" name="userNumber" type="text" maxlength="4" pattern="[0-9]{4}" value="{{ .UserNumber}}"><br>
+        <input id="help" name="help" type="text" maxlength="4" value="{{ .Help}}" readonly><br>
+        <span>Количество попыток: {{ .Attempts}}</span><br>
+        <button type="submit" {{ if .DisButton }} {{ .DisButton}} {{ end }}>Проверить</button>
     </form>
 </div>
 
