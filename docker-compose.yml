@@ -1,0 +1,8 @@
+version: '2.1'
+
+services:
+  guess the number:
+    image: guess the number
+    build: .
+    ports:
+      - 3000:3000
