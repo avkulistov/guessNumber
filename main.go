@@ -8,6 +8,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"os"
 )
 
 type viewData struct {
@@ -95,5 +96,8 @@ func main() {
 	http.HandleFunc("/", indexHandler)
 	http.HandleFunc("/start", startHandler)
 
-	http.ListenAndServe(":3000", nil)
+	APP_IP := os.Getenv("APP_IP")
+    APP_PORT := os.Getenv("APP_PORT")
+
+    http.ListenAndServe(APP_IP+":"+APP_PORT, nil)
 }
