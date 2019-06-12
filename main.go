@@ -3,8 +3,10 @@ package main
 import (
 	"fmt"
 	"html/template"
+	"log"
 	"math/rand"
 	"net/http"
+	"os"
 	"strconv"
 	"strings"
 	"time"
@@ -89,12 +91,23 @@ func moreZeros(str string, length int) string {
 	return str
 }
 
+func determineListenAddress() (string, error) {
+	port := os.Getenv("PORT")
+	if port == "" {
+		return "", fmt.Errorf("$PORT not set")
+	}
+	return ":" + port, nil
+}
+
 func main() {
-	fmt.Println("listening on port :3000")
+	addr, err := determineListenAddress()
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	http.Handle("/css/", http.StripPrefix("/css/", http.FileServer(http.Dir("./css"))))
 	http.HandleFunc("/", indexHandler)
 	http.HandleFunc("/start", startHandler)
 
-	http.ListenAndServe(":80", nil)
+	http.ListenAndServe(addr, nil)
 }
