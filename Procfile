@@ -1,1 +1,1 @@
-web: guessNumber
+web: golang main.go
