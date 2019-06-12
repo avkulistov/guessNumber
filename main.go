@@ -8,7 +8,6 @@ import (
 	"strconv"
 	"strings"
 	"time"
-	"os"
 )
 
 type viewData struct {
@@ -27,6 +26,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("templates/index.html", "templates/header.html", "templates/footer.html")
 	if err != nil {
 		fmt.Fprintf(w, err.Error())
+		fmt.Println(err.Error())
 	}
 	tmpl.ExecuteTemplate(w, "index", nil)
 
@@ -96,8 +96,5 @@ func main() {
 	http.HandleFunc("/", indexHandler)
 	http.HandleFunc("/start", startHandler)
 
-	APP_IP := os.Getenv("APP_IP")
-    APP_PORT := os.Getenv("APP_PORT")
-
-    http.ListenAndServe(APP_IP+":"+APP_PORT, nil)
+	http.ListenAndServe(":80", nil)
 }
